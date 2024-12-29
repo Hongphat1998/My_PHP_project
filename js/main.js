@@ -278,13 +278,12 @@ function number_format( number, decimals, dec_point, thousands_sep ) {
 // });
 
 // AJAX
-function AddProductToCart(ma,ten,gia,hinh,loai,soluong = 1)
-{
-	if(soluong == 'y'){
-		var a = $('#quantity').val();
-		//Nếu a != UNDEFINED thì gán số lượng = a	
-		if(a) soluong = a;
-	}
+function AddProductToCart(ma,ten,gia,hinh,loai)
+{	
+	var soluong = $('#quantity').val();
+	//Nếu a != UNDEFINED thì gán số lượng = a		
+	if(!soluong) soluong = 1;
+		
 	 $.ajax({
           url:'cart_ajax.php',
           data:'ma=' + ma + '&ten=' + ten + '&gia=' + gia + '&hinh=' + hinh + '&loai=' + loai + '&soluong=' + soluong + '&ac=insert',

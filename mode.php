@@ -21,4 +21,8 @@
 			header("location:index.php");
 		}
 	}
+	else{
+		echo "<script>alert('Lỗi Mode!'); window.location.href = 'store.php';</script>";
+		exit;
+	}
  ?>

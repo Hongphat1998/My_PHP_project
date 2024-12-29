@@ -107,12 +107,12 @@
 
 		//Tìm kiếm sản phẩm theo mã sản phẩm
 		public function searchById($masp){
-			$sql = "SELECT * 
+			$sql = "SELECT *, product.product_img AS product_image
 					FROM `category` JOIN `product` ON `category`.cat_id = `product`.cat_id
 					WHERE `product`.product_id = $masp";
-			return $this->exeQuery($sql);
+			return $this->exeQuery($sql)[0];
 		}
-
+		
 		//Tìm kiếm cơ bản => phục vụ cho tìm kiếm ở header client
 		public function basic_seachByCategory($currPage = 1,$key='',$cat_id='all')
 		{	

@@ -6,26 +6,7 @@
 <?php
 	include "config/config.php";
 	include ROOT."/include/function.php";
-	spl_autoload_register("loadClass");
-
-	$masp = getIndex('id');
-	$mode = getIndex('mode');
-	if($masp != '' && $mode!= ''){
-		$page = getIndex("page",1);
-		$products_clt = new Product();
-		$products = $products_clt->searchById($masp);
-		$product = $products[0];
-		//var_dump($product);
-
-
-		$products_clt->setPageSize(4);
-		$related_products = $products_clt->basic_seachByCategory(1,'',$product['cat_id']);
-		//var_dump($related_products);
-	}
-	else {
-		echo "<script>alert('Lỗi chi tiết'); window.location.href = 'store.php';</script>";
-		exit;
-	}
+	spl_autoload_register("loadClass");	
 ?>
 	<head>
 		<meta charset="utf-8">
@@ -164,21 +145,29 @@
 								<span class="product-available">Giá sốc</span>
 							</div>
 							<p><?php echo nl2br($product['product_description']);?></p>
-
+							
 							<div class="add-to-cart">
 								<div class="row">
 									<div class="col-xs-2">
 										<h4 style='margin-top:8px'>Qty</h4>
-									</div>
+									</div>									
 									<div class="col-xs-3">
 										<div class='form-group'>
 										<input class='form-control' id='quantity' type="number" value='1' min='1' max='99'>
 										</div>
 									</div>
+
 									<div class="col-xs-7">	
-										<?php echo "<button class='add-to-cart-btn' id='quantity-cart' onClick=\"AddProductToCart('{$product['product_id']}','".addslashes($product['product_name'])."','{$product['product_price']}','{$product['product_img']}','{$product['cat_name']}','y')\">
-														<i class='fa fa-shopping-cart'></i> add to cart
-													</button>" ?>										
+										<button class='add-to-cart-btn' id='quantity-cart' 
+										onClick="AddProductToCart(
+										<?php echo $product['product_id'];?>,
+										'<?php echo $product['product_name'];?>',
+										<?php echo $product['product_price'];?>,
+										'corsair-vegean-cergb2pack1.jpg',
+										'<?php echo $product['cat_name'];?>',
+										1)">
+											<i class='fa fa-shopping-cart'></i> add to cart
+										</button>										
 									</div>
 								</div>																
 							</div>
@@ -458,7 +447,9 @@
 											</div>
 										</div>
 										<div class="add-to-cart">
-											<button onClick="AddProductToCart(\''.$value['product_id'].'\',\''.addslashes($value['product_name']).'\',\''.$value['product_price'].'\',\''.$value['product_img'].'\',\''.$value['cat_name'].'\')" class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+											<button 
+											onClick="AddProductToCart('.$value['product_id'].',\''.$value['product_name'].'\','.$value['product_price'].',\'aaaaaaaaaa.jpg\',\''.$value['cat_name'].'\')" class="add-to-cart-btn">											
+											<i class="fa fa-shopping-cart"></i> add to cart</button>
 										</div>
 									</div>
 								</div>';

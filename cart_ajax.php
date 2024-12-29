@@ -19,11 +19,11 @@
         if(isset($_SESSION['shopping-cart'][$ma])){
           
                        
-            if($product[0]['product_quantity'] <= $_SESSION['shopping-cart'][$ma]['quantity']) echo "<script>alert('Hết hàng rồi')</script>";
+            if($product['product_quantity'] <= $_SESSION['shopping-cart'][$ma]['quantity']) echo "<script>alert('Hết hàng rồi')</script>";
             else $_SESSION['shopping-cart'][$ma]['quantity'] += $soluong; 
         }
         else{
-              if($product[0]['product_quantity'] < $soluong) echo "<script>alert('Hết hàng rồi')</script>";
+              if($product['product_quantity'] < $soluong) echo "<script>alert('Hết hàng rồi')</script>";
             else {
                 $_SESSION['shopping-cart'][$ma]['cat_name'] = $loaisp;
                 $_SESSION['shopping-cart'][$ma]['name'] = $ten;
@@ -45,7 +45,7 @@
             $products_clt = new Product();
             $product = $products_clt->searchById($ma);
                        
-            if($product[0]['product_quantity'] < $soluong) echo "<script>alert('Tồn kho không đủ')</script>";
+            if($product['product_quantity'] < $soluong) echo "<script>alert('Tồn kho không đủ')</script>";
             else $_SESSION['shopping-cart'][$ma]['quantity'] = $soluong; 
         }
     }
