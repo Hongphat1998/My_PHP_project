@@ -1,120 +1,154 @@
--- --------------------------------------------------------
--- Host:                         127.0.0.1
--- Server version:               8.0.30 - MySQL Community Server - GPL
--- Server OS:                    Win64
--- HeidiSQL Version:             12.1.0.6537
--- --------------------------------------------------------
+-- phpMyAdmin SQL Dump
+-- version 4.8.4
+-- https://www.phpmyadmin.net/
+--
+-- Máy chủ: 127.0.0.1:3306
+-- Thời gian đã tạo: Th12 24, 2019 lúc 04:21 PM
+-- Phiên bản máy phục vụ: 5.7.24
+-- Phiên bản PHP: 7.2.14
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
+
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET NAMES utf8 */;
-/*!50503 SET NAMES utf8mb4 */;
-/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
-/*!40103 SET TIME_ZONE='+00:00' */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
 
+--
+-- Cơ sở dữ liệu: `computer_store`
+--
 
--- Dumping database structure for computer_store
-CREATE DATABASE IF NOT EXISTS `computer_store` /*!40100 DEFAULT CHARACTER SET utf16 COLLATE utf16_vietnamese_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `computer_store`;
+-- --------------------------------------------------------
 
--- Dumping structure for table computer_store.admin
+--
+-- Cấu trúc bảng cho bảng `admin`
+--
+
+DROP TABLE IF EXISTS `admin`;
 CREATE TABLE IF NOT EXISTS `admin` (
-  `ad_id` int NOT NULL AUTO_INCREMENT,
+  `ad_id` int(5) NOT NULL AUTO_INCREMENT,
   `ad_user` varchar(30) NOT NULL,
   `ad_pwd` varchar(30) NOT NULL,
   `ad_name` varchar(30) NOT NULL,
   `ad_email` varchar(50) NOT NULL,
   `ad_phone` varchar(15) NOT NULL,
   PRIMARY KEY (`ad_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
--- Dumping data for table computer_store.admin: ~0 rows (approximately)
+--
+-- Đang đổ dữ liệu cho bảng `admin`
+--
+
 INSERT INTO `admin` (`ad_id`, `ad_user`, `ad_pwd`, `ad_name`, `ad_email`, `ad_phone`) VALUES
-	(3, 'admin', '123456', 'Chủ tịch 1 thành viên', 'phat123@asd.com', '0938486798');
+(3, 'admin', '123456', 'Chủ tịch 1 thành viên', 'phat123@asd.com', '0938486798');
 
--- Dumping structure for table computer_store.category
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `category`
+--
+
+DROP TABLE IF EXISTS `category`;
 CREATE TABLE IF NOT EXISTS `category` (
-  `cat_id` int NOT NULL AUTO_INCREMENT,
+  `cat_id` int(5) NOT NULL AUTO_INCREMENT,
   `cat_name` varchar(50) NOT NULL,
   PRIMARY KEY (`cat_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
--- Dumping data for table computer_store.category: ~9 rows (approximately)
+--
+-- Đang đổ dữ liệu cho bảng `category`
+--
+
 INSERT INTO `category` (`cat_id`, `cat_name`) VALUES
-	(1, 'RAM'),
-	(2, 'VGA'),
-	(3, 'PSU - Nguồn'),
-	(4, 'CPU'),
-	(5, 'Mainboard'),
-	(6, 'Case máy tính'),
-	(8, 'Tản nhiệt'),
-	(9, 'Ố cứng'),
-	(10, 'Ổ đĩa ngoài');
+(1, 'RAM'),
+(2, 'VGA'),
+(3, 'PSU - Nguồn'),
+(4, 'CPU'),
+(5, 'Mainboard'),
+(6, 'Case máy tính'),
+(8, 'Tản nhiệt'),
+(9, 'Ố cứng'),
+(10, 'Ổ đĩa ngoài');
 
--- Dumping structure for table computer_store.comment
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `comment`
+--
+
+DROP TABLE IF EXISTS `comment`;
 CREATE TABLE IF NOT EXISTS `comment` (
-  `comment_id` int NOT NULL AUTO_INCREMENT,
+  `comment_id` int(8) NOT NULL AUTO_INCREMENT,
   `comment_content` varchar(500) NOT NULL,
   `comment_date` datetime NOT NULL,
-  `comment_rate` smallint NOT NULL DEFAULT '0',
-  `product_id` int NOT NULL,
+  `comment_rate` smallint(2) NOT NULL DEFAULT '0',
+  `product_id` int(5) NOT NULL,
   `user_id` varchar(30) NOT NULL,
   PRIMARY KEY (`comment_id`),
   KEY `FK_COMMENT_PRODUCT` (`product_id`),
-  KEY `FK_COMMENT_USER` (`user_id`),
-  CONSTRAINT `FK_COMMENT_PRODUCT` FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`) ON UPDATE CASCADE,
-  CONSTRAINT `FK_COMMENT_USER` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8mb3;
+  KEY `FK_COMMENT_USER` (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8;
 
--- Dumping data for table computer_store.comment: ~41 rows (approximately)
+--
+-- Đang đổ dữ liệu cho bảng `comment`
+--
+
 INSERT INTO `comment` (`comment_id`, `comment_content`, `comment_date`, `comment_rate`, `product_id`, `user_id`) VALUES
-	(1, 'Sản phẩm tốt', '2019-12-06 09:19:00', 5, 1, 'testsignup147'),
-	(2, 'Ổn đó', '2019-12-06 09:24:00', 4, 1, 'testsignup147'),
-	(3, 'Rất tốt!', '2019-12-07 19:55:35', 4, 12, 'testsignup147'),
-	(4, 'Test thử chức năng', '2019-12-07 20:05:28', 1, 12, 'testsignup147'),
-	(5, 'Test thử chức năng', '2019-12-07 20:05:45', 1, 12, 'testsignup147'),
-	(6, 'Test thử chức năng', '2019-12-07 20:05:55', 3, 12, 'testsignup147'),
-	(7, 'Test thử chức năng', '2019-12-07 20:05:58', 3, 12, 'testsignup147'),
-	(8, 'Chán thật', '2019-12-07 20:06:08', 3, 12, 'testsignup147'),
-	(9, '', '2019-12-07 20:22:30', 0, 12, 'testsignup147'),
-	(10, 'Oh', '2019-12-07 21:09:29', 3, 12, 'testsignup147'),
-	(11, 'Bình luận xem tạm được nè', '2019-12-07 21:10:11', 5, 12, 'testsignup147'),
-	(12, 'Test thử append', '2019-12-08 07:36:48', 2, 1, 'testsignup147'),
-	(13, 'Test lại lần nữa', '2019-12-08 07:38:14', 3, 1, 'testsignup147'),
-	(14, 'Once Time Again', '2019-12-08 07:39:02', 3, 1, 'testsignup147'),
-	(15, 'Chua xót vô cùng', '2019-12-08 07:45:16', 3, 1, 'testsignup147'),
-	(16, 'What ?', '2019-12-08 07:46:39', 0, 1, 'testsignup147'),
-	(17, 'BTS ', '2019-12-08 07:58:22', 5, 1, 'testsignup147'),
-	(18, '\'haha\'"hehe"Nè', '2019-12-08 07:59:17', 2, 1, 'testsignup147'),
-	(19, '\'Haizz\'"Chán Thật"', '2019-12-08 07:59:57', 0, 1, 'testsignup147'),
-	(20, '"test cái tab"\'Ko lm dc\'', '2019-12-08 08:01:30', 2, 1, 'testsignup147'),
-	(21, '\'asdasd\'"12313asdad"', '2019-12-08 08:03:17', 1, 1, 'testsignup147'),
-	(22, '\'21313sadas\'"sad213dsa"1asdas', '2019-12-08 08:03:59', 5, 1, 'testsignup147'),
-	(23, '\'Okay\'"Fine"', '2019-12-08 08:06:07', 0, 1, 'testsignup147'),
-	(24, '"Nhây"\'Đến\'"Cùng"', '2019-12-08 08:07:03', 1, 1, 'testsignup147'),
-	(25, '"Great"\'Like\'', '2019-12-08 10:00:09', 3, 10, 'phat1998'),
-	(26, '"Haizzz"\'Haizzzz\'', '2019-12-08 10:00:39', 2, 10, 'phat1998'),
-	(27, '"Haizzz"\'Haizzzz\'', '2019-12-08 10:00:49', 2, 10, 'phat1998'),
-	(28, 'Lỗi xuồng dòng bình luận', '2019-12-08 10:10:43', 4, 10, 'phat1998'),
-	(29, 'Fix dc thì fix đi', '2019-12-08 10:12:49', 1, 10, 'phat1998'),
-	(30, 'Có giảm giá ko?', '2019-12-08 16:15:21', 3, 6, 'phat1998'),
-	(31, 'Alo Alo ALo', '2019-12-08 16:18:31', 5, 6, 'phat1998'),
-	(32, 'Bình luận có lỗi kìa', '2019-12-08 16:20:10', 1, 6, 'phat1998'),
-	(33, 'Test', '2019-12-08 16:21:12', 2, 6, 'phat1998'),
-	(34, 'Once Time', '2019-12-08 16:22:51', 4, 6, 'phat1998'),
-	(35, 'Mé nó', '2019-12-08 16:23:04', 2, 6, 'phat1998'),
-	(36, 'Once time again', '2019-12-08 16:25:21', 1, 6, 'phat1998'),
-	(37, 'Fight your challenge', '2019-12-08 16:26:14', 3, 6, 'phat1998'),
-	(38, 'hình rồng đẹp đó', '2019-12-11 09:08:27', 5, 15, 'somethingwrong'),
-	(39, 'wow. mẫu này đẹp "Phết"', '2019-12-12 01:15:04', 4, 15, 'somethingwrong456'),
-	(40, 'Test lại cái', '2019-12-13 22:32:23', 3, 1, 'testsignup147'),
-	(41, 'Mẫu đẹp! Case này có bao nhiêu size? có bản màu khác không? Nhìn bên ngoài bắt mắt đó mà không biết có thiệt zy ko? @@', '2019-12-17 13:31:18', 5, 15, 'somethingwrong');
+(1, 'Sản phẩm tốt', '2019-12-06 09:19:00', 5, 1, 'testsignup147'),
+(2, 'Ổn đó', '2019-12-06 09:24:00', 4, 1, 'testsignup147'),
+(3, 'Rất tốt!', '2019-12-07 19:55:35', 4, 12, 'testsignup147'),
+(4, 'Test thử chức năng', '2019-12-07 20:05:28', 1, 12, 'testsignup147'),
+(5, 'Test thử chức năng', '2019-12-07 20:05:45', 1, 12, 'testsignup147'),
+(6, 'Test thử chức năng', '2019-12-07 20:05:55', 3, 12, 'testsignup147'),
+(7, 'Test thử chức năng', '2019-12-07 20:05:58', 3, 12, 'testsignup147'),
+(8, 'Chán thật', '2019-12-07 20:06:08', 3, 12, 'testsignup147'),
+(9, '', '2019-12-07 20:22:30', 0, 12, 'testsignup147'),
+(10, 'Oh', '2019-12-07 21:09:29', 3, 12, 'testsignup147'),
+(11, 'Bình luận xem tạm được nè', '2019-12-07 21:10:11', 5, 12, 'testsignup147'),
+(12, 'Test thử append', '2019-12-08 07:36:48', 2, 1, 'testsignup147'),
+(13, 'Test lại lần nữa', '2019-12-08 07:38:14', 3, 1, 'testsignup147'),
+(14, 'Once Time Again', '2019-12-08 07:39:02', 3, 1, 'testsignup147'),
+(15, 'Chua xót vô cùng', '2019-12-08 07:45:16', 3, 1, 'testsignup147'),
+(16, 'What ?', '2019-12-08 07:46:39', 0, 1, 'testsignup147'),
+(17, 'BTS ', '2019-12-08 07:58:22', 5, 1, 'testsignup147'),
+(18, '\'haha\'\"hehe\"Nè', '2019-12-08 07:59:17', 2, 1, 'testsignup147'),
+(19, '\'Haizz\'\"Chán Thật\"', '2019-12-08 07:59:57', 0, 1, 'testsignup147'),
+(20, '\"test cái tab\"\'Ko lm dc\'', '2019-12-08 08:01:30', 2, 1, 'testsignup147'),
+(21, '\'asdasd\'\"12313asdad\"', '2019-12-08 08:03:17', 1, 1, 'testsignup147'),
+(22, '\'21313sadas\'\"sad213dsa\"1asdas', '2019-12-08 08:03:59', 5, 1, 'testsignup147'),
+(23, '\'Okay\'\"Fine\"', '2019-12-08 08:06:07', 0, 1, 'testsignup147'),
+(24, '\"Nhây\"\'Đến\'\"Cùng\"', '2019-12-08 08:07:03', 1, 1, 'testsignup147'),
+(25, '\"Great\"\'Like\'', '2019-12-08 10:00:09', 3, 10, 'phat1998'),
+(26, '\"Haizzz\"\'Haizzzz\'', '2019-12-08 10:00:39', 2, 10, 'phat1998'),
+(27, '\"Haizzz\"\'Haizzzz\'', '2019-12-08 10:00:49', 2, 10, 'phat1998'),
+(28, 'Lỗi xuồng dòng bình luận', '2019-12-08 10:10:43', 4, 10, 'phat1998'),
+(29, 'Fix dc thì fix đi', '2019-12-08 10:12:49', 1, 10, 'phat1998'),
+(30, 'Có giảm giá ko?', '2019-12-08 16:15:21', 3, 6, 'phat1998'),
+(31, 'Alo Alo ALo', '2019-12-08 16:18:31', 5, 6, 'phat1998'),
+(32, 'Bình luận có lỗi kìa', '2019-12-08 16:20:10', 1, 6, 'phat1998'),
+(33, 'Test', '2019-12-08 16:21:12', 2, 6, 'phat1998'),
+(34, 'Once Time', '2019-12-08 16:22:51', 4, 6, 'phat1998'),
+(35, 'Mé nó', '2019-12-08 16:23:04', 2, 6, 'phat1998'),
+(36, 'Once time again', '2019-12-08 16:25:21', 1, 6, 'phat1998'),
+(37, 'Fight your challenge', '2019-12-08 16:26:14', 3, 6, 'phat1998'),
+(38, 'hình rồng đẹp đó', '2019-12-11 09:08:27', 5, 15, 'somethingwrong'),
+(39, 'wow. mẫu này đẹp \"Phết\"', '2019-12-12 01:15:04', 4, 15, 'somethingwrong456'),
+(40, 'Test lại cái', '2019-12-13 22:32:23', 3, 1, 'testsignup147'),
+(41, 'Mẫu đẹp! Case này có bao nhiêu size? có bản màu khác không? Nhìn bên ngoài bắt mắt đó mà không biết có thiệt zy ko? @@', '2019-12-17 13:31:18', 5, 15, 'somethingwrong');
 
--- Dumping structure for table computer_store.order
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `order`
+--
+
+DROP TABLE IF EXISTS `order`;
 CREATE TABLE IF NOT EXISTS `order` (
-  `order_id` int NOT NULL AUTO_INCREMENT,
+  `order_id` int(5) NOT NULL AUTO_INCREMENT,
   `order_date` date NOT NULL,
   `consignee_name` varchar(30) NOT NULL,
   `consignee_phone` varchar(15) NOT NULL,
@@ -122,69 +156,85 @@ CREATE TABLE IF NOT EXISTS `order` (
   `order_status` tinyint(1) NOT NULL,
   `user_id` varchar(30) NOT NULL,
   PRIMARY KEY (`order_id`),
-  KEY `FK_ORDER_USER` (`user_id`),
-  CONSTRAINT `FK_ORDER_USER` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=86 DEFAULT CHARSET=utf8mb3;
+  KEY `FK_ORDER_USER` (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=86 DEFAULT CHARSET=utf8;
 
--- Dumping data for table computer_store.order: ~3 rows (approximately)
+--
+-- Đang đổ dữ liệu cho bảng `order`
+--
+
 INSERT INTO `order` (`order_id`, `order_date`, `consignee_name`, `consignee_phone`, `consignee_address`, `order_status`, `user_id`) VALUES
-	(82, '2019-12-17', '123 as int', '0938922315', '100D HOng P.1 Q.11', 1, 'testsignup147'),
-	(84, '2019-12-24', 'Long', '147258369', 'Quận 11', 1, 'somethingwrong'),
-	(85, '2019-12-24', 'Tuấn', '456789123', 'Quận 5', 0, 'testsignup147');
+(82, '2019-12-17', '123 as int', '0938922315', '100D HOng P.1 Q.11', 1, 'testsignup147'),
+(84, '2019-12-24', 'Long', '147258369', 'Quận 11', 1, 'somethingwrong'),
+(85, '2019-12-24', 'Tuấn', '456789123', 'Quận 5', 0, 'testsignup147');
 
--- Dumping structure for table computer_store.order_detail
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `order_detail`
+--
+
+DROP TABLE IF EXISTS `order_detail`;
 CREATE TABLE IF NOT EXISTS `order_detail` (
-  `order_id` int NOT NULL,
-  `product_id` int NOT NULL,
-  `quantity` tinyint NOT NULL,
+  `order_id` int(5) NOT NULL,
+  `product_id` int(5) NOT NULL,
+  `quantity` tinyint(3) NOT NULL,
   PRIMARY KEY (`order_id`,`product_id`),
-  KEY `FK_ORDERDETAIL_PRODUCT` (`product_id`),
-  CONSTRAINT `FK_ORDERDETAIL_ORDER` FOREIGN KEY (`order_id`) REFERENCES `order` (`order_id`) ON UPDATE CASCADE,
-  CONSTRAINT `FK_ORDERDETAIL_PRODUCT` FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`) ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+  KEY `FK_ORDERDETAIL_PRODUCT` (`product_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Dumping data for table computer_store.order_detail: ~19 rows (approximately)
+--
+-- Đang đổ dữ liệu cho bảng `order_detail`
+--
+
 INSERT INTO `order_detail` (`order_id`, `product_id`, `quantity`) VALUES
-	(82, 2, 4),
-	(82, 6, 2),
-	(82, 9, 1),
-	(82, 11, 1),
-	(82, 14, 1),
-	(82, 20, 1),
-	(84, 4, 1),
-	(84, 31, 4),
-	(84, 32, 3),
-	(84, 35, 1),
-	(84, 37, 1),
-	(84, 44, 2),
-	(84, 49, 1),
-	(85, 18, 1),
-	(85, 24, 1),
-	(85, 48, 1),
-	(85, 58, 1),
-	(85, 62, 1),
-	(85, 68, 1);
+(82, 2, 4),
+(82, 6, 2),
+(82, 9, 1),
+(82, 11, 1),
+(82, 14, 1),
+(82, 20, 1),
+(84, 4, 1),
+(84, 31, 4),
+(84, 32, 3),
+(84, 35, 1),
+(84, 37, 1),
+(84, 44, 2),
+(84, 49, 1),
+(85, 18, 1),
+(85, 24, 1),
+(85, 48, 1),
+(85, 58, 1),
+(85, 62, 1),
+(85, 68, 1);
 
--- Dumping structure for table computer_store.product
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `product`
+--
+
+DROP TABLE IF EXISTS `product`;
 CREATE TABLE IF NOT EXISTS `product` (
-  `product_id` int NOT NULL AUTO_INCREMENT,
+  `product_id` int(5) NOT NULL AUTO_INCREMENT,
   `product_name` varchar(150) NOT NULL,
-  `product_price` int NOT NULL,
+  `product_price` int(10) NOT NULL,
   `product_img` varchar(50) NOT NULL,
   `product_date` date NOT NULL DEFAULT '2019-11-18',
-  `product_quantity` int NOT NULL DEFAULT '0',
+  `product_quantity` int(5) NOT NULL DEFAULT '0',
   `product_description` varchar(500) NOT NULL,
   `product_detail` varchar(1000) NOT NULL,
-  `cat_id` int NOT NULL,
-  `provider_id` int NOT NULL,
+  `cat_id` int(5) NOT NULL,
+  `provider_id` int(5) NOT NULL,
   PRIMARY KEY (`product_id`),
   KEY `FK_PRODUCT_CAT` (`cat_id`),
-  KEY `FK_PRODUCT_PROVIDER` (`provider_id`),
-  CONSTRAINT `FK_PRODUCT_CAT` FOREIGN KEY (`cat_id`) REFERENCES `category` (`cat_id`) ON UPDATE CASCADE,
-  CONSTRAINT `FK_PRODUCT_PROVIDER` FOREIGN KEY (`provider_id`) REFERENCES `provider` (`provider_id`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=77 DEFAULT CHARSET=utf8mb3;
+  KEY `FK_PRODUCT_PROVIDER` (`provider_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=77 DEFAULT CHARSET=utf8;
 
--- Dumping data for table computer_store.product: ~74 rows (approximately)
+--
+-- Đang đổ dữ liệu cho bảng `product`
+--
+
 INSERT INTO `product` (`product_id`, `product_name`, `product_price`, `product_img`, `product_date`, `product_quantity`, `product_description`, `product_detail`, `cat_id`, `provider_id`) VALUES
 	(1, 'CPU Intel Core i7-9700K (8C/8T, 3.6 GHz - 4.9 GHz, 12MB) - LGA 1151-v2', 9990000, 'intel-i7-9700.jpg', '2019-11-18', 5, 'Tên sản phẩm: Bộ vi xử lý/ CPU Intel Core i7-9700 (12M Cache, up to 4.7GHz)\r\n\r\nSocket: 1151-v2, Intel Core thế hệ thứ 9\r\nTốc độ: 3.00 GHz up to 4.70 GHz (8nhân, 8 luồng)\r\nBộ nhớ đệm: 12MB\r\nChip đồ họa tích hợp: Intel UHD Graphics 630', 'Hiệu suất ở cấp độ mới\r\nBộ xử lý Intel Core i7-9700 thế hệ thứ 9 đưa hiệu năng máy tính để bàn chính lên một cấp độ hoàn toàn mới. i7-9700 với bộ nhớ cache 12MB và công nghệ Intel® Turbo Boost 2.0 điều chỉnh tần số turbo tối đa lên tới 4.70 GHz. Hỗ trợ đa nhiệm với 8 luồng hiệu suất cao được cung cấp bởi 8 lõi với công nghệ siêu phân luồng Intel® (Công nghệ Intel® HT) để giải quyết khối lượng công việc đòi hỏi khắt khe nhất.\r\nCung cấp sức mạnh xử lý tối ưu\r\nIntel Core i7-9700 cung cấp sức mạnh xử lý mạnh mẽ để chơi game, ghi hình hoặc livestream vượt trội hơn so với các thế hệ trước. Công nghệ Intel® Quick Sync Video để phát livestream trực tuyến, ghi hình và xử lý đa nhiệm mà không bị gián đoạn. Khởi động hệ thống với công nghệ bộ nhớ Intel® Optane™ giúp tăng tốc tải và khởi chạy các ứng dụng và trò chơi chỉ trong vài giây.', 4, 3),
 	(2, 'CPU Intel Core I3-7100 (3.9GHz)', 3350000, 'intel-i3-7100.jpg', '2019-10-10', 38, 'Tên sản phẩm: Bộ vi xử lý/ CPU Intel Core i3-7100 (3M Cache, 3.9GHz)\r\n- Socket: LGA 1151 , Intel Core thế hệ thứ 7\r\n- Tốc độ xử lý: 3.9 GHz ( 2 nhân, 4 luồng)\r\n- Bộ nhớ đệm: 3MB\r\n- Đồ họa tích hợp: Intel HD Graphics 630\r\n', 'Sơ lược\r\nINTEL đã chính thức ra mắt dòng CPU thế hệ thứ 7 của mình với tên mã Kaby Lake. Đây vẫn là dòng CPU được sản xuất trên công nghệ 14nm của Intel, nhưng đã được cải tiến đáng kể về hiệu năng xử lý đồ họa và tiết kiệm điện năng. Các CPU Kaby Lake sẽ tập trung rất nhiều vào khả năng xử lý đồ họa, đặc biệt là video với độ phân giải 4K, các video 360 độ và công nghệ thực tế ảo. Đồng thời hiệu năng xử lý các ứng dụng cũng được tăng lên 12%, còn hiệu năng duyệt web cao hơn 19% so với Skylake. Đặc biệt các dòng CPU sử dụng cho laptop mỏng, nhẹ sẽ đem lại hiệu năng và thời lượng pin được cải thiện rất nhiều.\r\nSáng tạo hơn\r\nLàm việc, vui chơi và tạo ra lâu hơn với một lần sạc. Tuổi thọ pin nâng cao giúp bạn tự do hoạt động không giới hạn đến 10 giờ2, cộng với thiết bị mỏng hơn và nhẹ hơn sẽ làm cho việc di chuyển trở nên dễ dàng hơn bao giờ hết. Thậm chí xem được đến 9,5 giờ video Ultra HD 4K với một lần sạc.', 4, 3),
@@ -261,30 +311,45 @@ INSERT INTO `product` (`product_id`, `product_name`, `product_price`, `product_i
 	(75, 'Nguồn máy tính GIGABYTE AORUS P850W - 850W - 80 Plus Gold - Full Modular', 3750000, 'gigabyte-aorus-850w.jpg', '2019-12-24', 77, 'Tên sản phẩm: Nguồn/ Power Gigabyte Aorus 850W (GP-AP850GM)\r\n\r\n- Công suất: 850W\r\n- Chuẩn hiệu suất: 80 Plus Gold\r\n- Quạt: 1 x 135 mm', 'Giới thiệu nguồn GIGABYTE AORUS P850W\r\nAORUS P850W là bộ nguồn cao cấp của GIGABYTE, hướng tới những người sử dụng cao cấp và game thủ với các bộ máy tính cấu hình cao cấp cùng với thiết kế góc cạnh, khỏe khoắn đặc trưng của dòng sản phẩm AORUS đến từ GIGABYTE.', 3, 9),
 	(76, 'Nguồn máy tính GIGABYTE PW400 - 400W - 80 Plus White', 790000, 'gigabyte-400w-gp-pw400.jpg', '2019-12-24', 170, 'Tên sản phẩm: Nguồn/ Power Gigabyte 400W (GP-PW400)\r\n\r\n- Công suất: 400W\r\n- Chuẩn hiệu suất: 80 Plus\r\n- Quạt: 1 x 120 mm', 'Giới thiệu nguồn GIGABYTE PW400\r\nPW400 là bộ nguồn phổ thông của GIGABYTE, hướng tới những game thủ đang build 1 bộ máy tính chơi game với cấu hình tầm trung.', 3, 9);
 
--- Dumping structure for table computer_store.provider
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `provider`
+--
+
+DROP TABLE IF EXISTS `provider`;
 CREATE TABLE IF NOT EXISTS `provider` (
-  `provider_id` int NOT NULL AUTO_INCREMENT,
+  `provider_id` int(5) NOT NULL AUTO_INCREMENT,
   `provider_name` varchar(50) NOT NULL,
   `provider_email` varchar(50) NOT NULL,
   `provider_phone` varchar(15) NOT NULL,
   PRIMARY KEY (`provider_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 
--- Dumping data for table computer_store.provider: ~11 rows (approximately)
+--
+-- Đang đổ dữ liệu cho bảng `provider`
+--
+
 INSERT INTO `provider` (`provider_id`, `provider_name`, `provider_email`, `provider_phone`) VALUES
-	(1, 'SamSung', 'samsung@lookout.com', '0938922310'),
-	(2, 'Asus', 'asus@gmail.com', '0938922311'),
-	(3, 'Intel', 'intel@vlookup.com', '0909561847'),
-	(4, 'Kingston', 'kingston@vlookup.com', '0938922313'),
-	(5, 'AcBel', 'acbel@vlookup.com', '0938922314'),
-	(6, 'Cooler Master', 'coolermaster@vlookup.com', '0938922315'),
-	(7, 'Logitec', 'hongphat702@gmail.com', '0938922316'),
-	(8, 'MSI', 'msi@gmail.com', '0938944487'),
-	(9, 'Gigabyte', 'gigabyte@yahoo.com', '0938922123'),
-	(10, 'Sama', 'sama@stu.edu.vn', '0933154876'),
-	(14, 'Corsair', 'corsair@asd123.com', '654987321');
+(1, 'SamSung', 'samsung@lookout.com', '0938922310'),
+(2, 'Asus', 'asus@gmail.com', '0938922311'),
+(3, 'Intel', 'intel@vlookup.com', '0909561847'),
+(4, 'Kingston', 'kingston@vlookup.com', '0938922313'),
+(5, 'AcBel', 'acbel@vlookup.com', '0938922314'),
+(6, 'Cooler Master', 'coolermaster@vlookup.com', '0938922315'),
+(7, 'Logitec', 'hongphat702@gmail.com', '0938922316'),
+(8, 'MSI', 'msi@gmail.com', '0938944487'),
+(9, 'Gigabyte', 'gigabyte@yahoo.com', '0938922123'),
+(10, 'Sama', 'sama@stu.edu.vn', '0933154876'),
+(14, 'Corsair', 'corsair@asd123.com', '654987321');
 
--- Dumping structure for table computer_store.user
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `user`
+--
+
+DROP TABLE IF EXISTS `user`;
 CREATE TABLE IF NOT EXISTS `user` (
   `user_id` varchar(30) NOT NULL,
   `user_name` varchar(30) DEFAULT NULL,
@@ -293,17 +358,50 @@ CREATE TABLE IF NOT EXISTS `user` (
   `user_phone` varchar(20) NOT NULL,
   `user_address` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Dumping data for table computer_store.user: ~4 rows (approximately)
+--
+-- Đang đổ dữ liệu cho bảng `user`
+--
+
 INSERT INTO `user` (`user_id`, `user_name`, `user_pwd`, `user_email`, `user_phone`, `user_address`) VALUES
-	('phat1998', 'Kiệt', 'd0b5e7c121c39c168ab1ac800fe6c281', 'hongphat703@gmail.com', '0938922315', 'Quận 5'),
-	('somethingwrong', NULL, '00a8d9633cd9bc98e9eab405deaef4de', 'conbaba999990@gmail.com', '0938976481', NULL),
-	('somethingwrong456', NULL, 'd0b5e7c121c39c168ab1ac800fe6c281', 'hongphat701@gmail.com', '0938922315', NULL),
-	('testsignup147', 'Giận', 'd0b5e7c121c39c168ab1ac800fe6c281', 'hongphat702@gmail.com', '0938922315', 'Quận Dỗi');
+('phat1998', 'Kiệt', 'd0b5e7c121c39c168ab1ac800fe6c281', 'hongphat703@gmail.com', '0938922315', 'Quận 5'),
+('somethingwrong', NULL, '00a8d9633cd9bc98e9eab405deaef4de', 'conbaba999990@gmail.com', '0938976481', NULL),
+('somethingwrong456', NULL, 'd0b5e7c121c39c168ab1ac800fe6c281', 'hongphat701@gmail.com', '0938922315', NULL),
+('testsignup147', 'Giận', 'd0b5e7c121c39c168ab1ac800fe6c281', 'hongphat702@gmail.com', '0938922315', 'Quận Dỗi');
 
-/*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
-/*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
-/*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
+--
+-- Các ràng buộc cho các bảng đã đổ
+--
+
+--
+-- Các ràng buộc cho bảng `comment`
+--
+ALTER TABLE `comment`
+  ADD CONSTRAINT `FK_COMMENT_PRODUCT` FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `FK_COMMENT_USER` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`);
+
+--
+-- Các ràng buộc cho bảng `order`
+--
+ALTER TABLE `order`
+  ADD CONSTRAINT `FK_ORDER_USER` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON UPDATE CASCADE;
+
+--
+-- Các ràng buộc cho bảng `order_detail`
+--
+ALTER TABLE `order_detail`
+  ADD CONSTRAINT `FK_ORDERDETAIL_ORDER` FOREIGN KEY (`order_id`) REFERENCES `order` (`order_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `FK_ORDERDETAIL_PRODUCT` FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`) ON UPDATE CASCADE;
+
+--
+-- Các ràng buộc cho bảng `product`
+--
+ALTER TABLE `product`
+  ADD CONSTRAINT `FK_PRODUCT_CAT` FOREIGN KEY (`cat_id`) REFERENCES `category` (`cat_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `FK_PRODUCT_PROVIDER` FOREIGN KEY (`provider_id`) REFERENCES `provider` (`provider_id`) ON UPDATE CASCADE;
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40111 SET SQL_NOTES=IFNULL(@OLD_SQL_NOTES, 1) */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
