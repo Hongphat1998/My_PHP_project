@@ -163,7 +163,7 @@
 										<?php echo $product['product_id'];?>,
 										'<?php echo $product['product_name'];?>',
 										<?php echo $product['product_price'];?>,
-										'corsair-vegean-cergb2pack1.jpg',
+										'<?php echo $product['product_img'];?>',
 										'<?php echo $product['cat_name'];?>',
 										1)">
 											<i class='fa fa-shopping-cart'></i> add to cart
