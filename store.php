@@ -59,28 +59,11 @@
 		<!-- /HEADER -->
 
 		<!-- NAVIGATION -->
-		<?php include_once 'subpage/navigation.html'; ?>
+		<?php include_once 'subpage/navigation.php'; ?>
 		<!-- /NAVIGATION -->
 
 		<!-- BREADCRUMB -->
-		<div id="breadcrumb" class="section">
-			<!-- container -->
-			<div class="container">
-				<!-- row -->
-				<div class="row">
-					<div class="col-md-12">
-						<ul class="breadcrumb-tree">
-							<li><a href="index.php">Home</a></li>
-							<li><a href="store.php">Danh mục</a></li>
-							<li><a href="#">Linh kiện</a></li>
-							<li class="active">Sản phẩm (<?php echo isset($count_item)?$count_item:0; ?> Kết quả) <?php echo isset($basic_key)&&$basic_key!=''?" với từ khoá: <strong style='color:red; font-size:140%;'>$basic_key</strong>":''; ?></li>
-						</ul>
-					</div>
-				</div>
-				<!-- /row -->
-			</div>
-			<!-- /container -->
-		</div>
+		<?php include_once 'subpage/breadcrumb.php'; ?>	
 		<!-- /BREADCRUMB -->
 
 		<!-- SECTION -->
@@ -96,7 +79,7 @@
 					<div id="aside" class="col-md-3">
 						<!-- aside Widget -->
 						<div class="aside">
-							<h3 class="aside-title">Categories</h3>
+							<h3 class="aside-title"><?php echo getText('cat'); ?></h3>
 							<div class="checkbox-filter">	
 								<?php 
 									// $cats = new Category();
@@ -152,7 +135,7 @@
 
 						<!-- aside Widget -->
 						<div class="aside">
-							<h3 class="aside-title">Brand</h3>
+							<h3 class="aside-title"><?php echo getText('brand'); ?></h3>
 							<div class="checkbox-filter">
 									<?php 
 									$pros = new Provider();
@@ -215,7 +198,7 @@
 						
 						<!-- aside Widget -->
 						<div class="aside">
-							<h3 class="aside-title">Price</h3>
+							<h3 class="aside-title"><?php echo getText('price'); ?></h3>
 							<div class="price-filter">
 								<div id="price-slider"></div>
 								<div class="input-number price-min">
@@ -236,7 +219,7 @@
 
 						<!-- aside Widget -->
 						<div class='aside' bgcolor=red>
-							<h3 class="aside-title">Ad - Search</h3>
+							<h3 class="aside-title"><?php echo getText('search_btn'); ?></h3>
 						
 							<div class="button-group">
 								<input type="button" class="btn btn-default" value="Xoá bộ lọc" id="btn-clear">
@@ -248,7 +231,7 @@
 
 						<!-- aside Widget -->
 						<div class="aside">
-							<h3 class="aside-title">Top selling</h3>
+							<h3 class="aside-title"><?php echo getText('best_sell_prod'); ?></h3>
 							<div class="section-nav">
 								<div id="slick-nav-6" class="products-slick-nav"></div>
 							</div>
@@ -325,7 +308,7 @@
 						<div class="store-filter clearfix">
 							<div class="store-sort">
 								<label>
-									Sắp xếp theo
+								<?php echo getText('sort_by'); ?>
 									<select class='input-select' id='sort-price' name='order'>
 									<?php 
 										$arrSort = array('normal'=>'Thường',
@@ -351,7 +334,7 @@
 								</label>
 
 								<label>
-									Show:
+								<?php echo getText('display'); ?>
 									<select class="input-select" id='show-product' name='show'>
 									<?php 
 										$arrShow = array('9sp'=>'9'
@@ -423,7 +406,7 @@
 
 						<!-- store bottom filter -->
 						<div class="store-filter clearfix">
-							<span class="store-qty">Showing 6-12 sản phẩm</span>
+							<span class="store-qty"><?php echo getText('display'); ?> 6-12 <?php echo getText('prod'); ?></span>
 							<ul class="store-pagination">
 							<?php 
 								// WORKING
@@ -463,7 +446,7 @@
 		<!-- /NEWSLETTER -->
 
 		<!-- FOOTER -->
-		<?php include 'subpage/footer.html';?>
+		<?php include 'subpage/footer.php';?>
 		<!-- /FOOTER -->
 		
 		

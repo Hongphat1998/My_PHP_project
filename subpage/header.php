@@ -6,23 +6,29 @@
                 <li><a href="#"><i class="fa fa-phone"></i> +0938-900-000</a></li>
                 <li><a href="#"><i class="fa fa-envelope-o"></i> hongphat701@gmail.com</a></li>
                 <li><a href="#"><i class="fa fa-map-marker"></i> 180 Cao Lỗ</a></li>
-            </ul>
+            </ul>            
+
             <ul class="header-links pull-right">
-                <li><a href="user"><i class="fa fa-dollar"></i> Kiểm tra đơn hàng</a></li>
+                <li>            
+                    <a href="<?php echo BASE_URL; ?>/module/languages/switch.php?lang=en"><img src="<?php echo BASE_URL;?>/img/us_flag.png" alt=""> <?php echo getText('en');?></a>                      
+                </li>
+                <li><a href="<?php echo BASE_URL; ?>/module/languages/switch.php?lang=vi"><img src="<?php echo BASE_URL;?>/img/vn_flag.png" alt=""> <?php echo getText('vi');?></a></li>
+                <li><a href="user"><i class="fa fa-dollar"></i> <?php echo getText('check_order');?></a></li>
                 <?php
                     //$email = isset($_COOKIE['user_email'])?$_COOKIE['user_email']:'';
                     $name = isset($_SESSION['user'])?$_SESSION['user']['user_id']:'';
                     if($name != '') 
-                        echo "<li><a><i class='fa fa-user-o'></i>Xin chào, $name</a></li>
-                              <li><a href='index.php?mode=exit'><i class='fa fa-sign-out'></i>Đăng xuất</a></li>";
+                        echo "<li><a><i class='fa fa-user-o'></i>".getText('welcome').", $name</a></li>
+                              <li><a href='index.php?mode=exit'><i class='fa fa-sign-out'></i>".getText('logout')."</a></li>";
                     else 
-                     echo "<li><a href='subpage/login.php'><i class='fa fa-user-o'></i>Đăng nhập/Đăng ký</a></li>";
+                     echo "<li><a href='subpage/login.php'><i class='fa fa-user-o'></i>".getText('login')."</a></li>";
                 ?>
                
             </ul>
         </div>
     </div>
     <div id="header">
+    
         <!-- container -->
         <div class="container">
             <!-- row -->
@@ -42,7 +48,7 @@
                     <div class="header-search">
                         <form action='store.php' method='get'>
                             <select class="input-select" name='cat-id'>
-                               <option value='all'>Tất cả</option>
+                               <option value='all'></i><?php echo getText('all_cat');?></option>
                                 <?php
                                     $cats_clt = new Category();
                                     $cats_clt->setPageSize(20);
@@ -54,10 +60,10 @@
                             
                                     
                             </select>
-                            <input class="input" name='key' placeholder="Tìm kiếm ở đây . . . . ">
+                            <input class="input" name='key' placeholder="<?php echo getText('search_plchldr');?> . . . . ">
                             <input type='hidden' name='mode' value='product'>
                             <input type='hidden' name='ac' value='search'>
-                            <button class="search-btn" name='basic-search' value='Search'>Search</button>
+                            <button class="search-btn" name='basic-search' value='Search'></i> <?php echo getText('search_btn');?></button>
                         </form>                    
                     </div>
                 </div>
@@ -71,7 +77,7 @@
                         <div onClick='ShowWishList()' id='btn-wishlist'>
                             <a>
                                 <i class="fa fa-shopping-cart"></i>
-                                <span>DS yêu thích</span>
+                                <span><?php echo getText('wish_list');?></span>
                                 <div class="qty cart"><?php echo isset($_SESSION['wishlist'])?count($_SESSION['wishlist']):0; ?></div>
                             </a>
                            
@@ -104,7 +110,7 @@
                         <div class="dropdown" id='shopping-cart'>
                             <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
                                 <i class="fa fa-shopping-cart"></i>
-                                <span>Giỏ hàng</span>
+                                <span><?php echo getText('shopping_cart');?></span>
                                 <div class="qty cart"><?php echo isset($_SESSION['shopping-cart'])?$count:0; ?></div>
                             </a>
                             <div class="cart-dropdown">
@@ -115,12 +121,12 @@
                                      
                                 </div>
                                 <div class="cart-summary">
-                                    <small><?php echo isset($_SESSION['shopping-cart'])?$count:0; ?> sản phẩm đã chọn</small>
-                                    <h5>tổng tiền: <?php echo isset($total)?number_format($total,0,'',','):0; ?> đ</h5>
+                                    <small><?php echo isset($_SESSION['shopping-cart'])?$count:0; ?> <?php echo getText('selected_items'); ?></small>
+                                    <h5><?php echo getText('total_cart'); ?>: <?php echo isset($total)?number_format($total,0,'',','):0; ?> đ</h5>
                                 </div>
                                 <div class="cart-btns">
-                                    <a href="./cart.php">Xem giỏ hàng</a>
-                                    <a href="./checkout.php">Thanh toán <i class="fa fa-arrow-circle-right"></i></a>
+                                    <a href="./cart.php"><?php echo getText('check_cart');?></a>
+                                    <a href="./checkout.php"><?php echo getText('checkout');?> <i class="fa fa-arrow-circle-right"></i></a>
                                 </div>
                             </div>
                         </div>

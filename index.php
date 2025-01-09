@@ -63,11 +63,11 @@
 		<!-- /HEADER -->
 
 		<!-- NAVIGATION -->
-		<?php include_once 'subpage/navigation.html'; ?>
+		<?php include_once 'subpage/navigation.php'; ?>
 		<!-- /NAVIGATION -->
 
 		<!-- SECTION -->
-		<?php include_once 'subpage/section_introduce.html'; ?>
+		<?php include_once 'subpage/section_introduce.php'; ?>
 		<!-- /SECTION -->
 
 		<!-- SECTION -->
@@ -75,7 +75,7 @@
 		<!-- /SECTION -->
 
 		<!-- HOT DEAL SECTION -->
-		<?php include_once 'subpage/hotdealsection.html'; ?>
+		<?php include_once 'subpage/hotdealsection.php'; ?>
 		<!-- /HOT DEAL SECTION -->
 
 		<!-- SECTION -->
@@ -91,7 +91,7 @@
 		<!-- /NEWSLETTER -->
 
 		<!-- FOOTER -->
-		<?php include_once 'subpage/footer.html'; ?>
+		<?php include_once 'subpage/footer.php'; ?>
 		<!-- /FOOTER -->
 		<script src="js/jquery.min.js"></script>
 		<script src="js/bootstrap.min.js"></script>

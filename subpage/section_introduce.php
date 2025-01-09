@@ -11,8 +11,8 @@
                         <img src="./image/asus-rtx-2080Ti.jpg" alt="">
                     </div>
                     <div class="shop-body">
-                        <h3>VGA<br>Card màn hình</h3>
-                        <a href="./store.php?cat-id=2&key=&mode=product&ac=search&basic-search=Search" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
+                        <h3><?php echo getText('vga'); ?></h3>
+                        <a href="./store.php?cat-id=2&key=&mode=product&ac=search&basic-search=Search" class="cta-btn"><?php echo getText('buy'); ?> <i class="fa fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -25,8 +25,8 @@
                         <img src="./image/intel-i7-9700.jpg" alt="">
                     </div>
                     <div class="shop-body">
-                        <h3>CPU<br>Vi xử lý</h3>
-                        <a href="./store.php?cat-id=4&key=&mode=product&ac=search&basic-search=Search" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
+                        <h3><?php echo getText('cpu'); ?></h3>
+                        <a href="./store.php?cat-id=4&key=&mode=product&ac=search&basic-search=Search" class="cta-btn"><?php echo getText('buy'); ?> <i class="fa fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -39,8 +39,8 @@
                         <img src="./image/asus-rog-strix-Z390.jpg" alt="">
                     </div>
                     <div class="shop-body">
-                        <h3>Mainboard<br>Bộ mạch chủ</h3>
-                        <a href="./store.php?cat-id=5&key=&mode=product&ac=search&basic-search=Search" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
+                        <h3><?php echo getText('mainboard'); ?></h3>
+                        <a href="./store.php?cat-id=5&key=&mode=product&ac=search&basic-search=Search" class="cta-btn"><?php echo getText('buy'); ?> <i class="fa fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
             </div>

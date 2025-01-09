@@ -54,7 +54,7 @@
 		<!-- /HEADER -->
 
 		<!-- NAVIGATION -->
-		<?php include_once 'subpage/navigation.html'; ?>
+		<?php include_once 'subpage/navigation.php'; ?>
 		<!-- /NAVIGATION -->
 
 		<!-- BREADCRUMB -->
@@ -154,7 +154,7 @@
 		<!-- /NEWSLETTER -->
 
 		<!-- FOOTER -->
-		<?php include 'subpage/footer.html';?>
+		<?php include 'subpage/footer.php';?>
 		<!-- /FOOTER -->
 
 		<!-- jQuery Plugins -->

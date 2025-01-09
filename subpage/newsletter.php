@@ -5,10 +5,10 @@
 				<div class="row">
 					<div class="col-md-12">
 						<div class="newsletter">
-							<p>Đăng ký để nhận <strong>TIN TỨC</strong></p>
+							<p><?php echo getText('subcribe_title'); ?></p>							
 							<form method="post" action="index.php?mode=news&ac=dosendmail">
-								<input class="input" type="email" name="email" placeholder="Nhập email của bạn">
-								<button class="newsletter-btn" name="sm-newsletter" value="Đăng ký"><i class="fa fa-envelope"></i> Đăng ký</button>
+								<input class="input" type="email" name="email" placeholder="<?php echo getText('subcribe_plchlr'); ?>">
+								<button class="newsletter-btn" name="sm-newsletter" value="Đăng ký"><i class="fa fa-envelope"></i> <?php echo getText('subcribe_btn'); ?></button>
 							</form>
 							<ul class="newsletter-follow">
 								<li>

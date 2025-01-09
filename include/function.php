@@ -26,4 +26,12 @@ function fileIndex($index,$value=''){
 	$data = isset($_FILES[$index])?$_FILES[$index]:$value;
 	return $data;
 }
+
+function getText($key){		
+	$lang = isset($_SESSION["locale"])?$_SESSION["locale"]:'vi';	
+	
+	$data = include(ROOT."/lang/".$lang."/messages.php");
+	
+	return $data[$key];
+}
 ?>

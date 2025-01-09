@@ -204,7 +204,7 @@
 		<!-- /NEWSLETTER -->
 
 		<!-- FOOTER -->
-		<?php include_once 'subpage/footer.html'; ?>
+		<?php include_once 'subpage/footer.php'; ?>
 		<!-- /FOOTER -->
 		
 		<!-- jQuery Plugins -->

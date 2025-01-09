@@ -61,28 +61,11 @@
 		<!-- /HEADER -->
 
 		<!-- NAVIGATION -->
-		<?php include_once 'subpage/navigation.html'; ?>
+		<?php include_once 'subpage/navigation.php'; ?>
 		<!-- /NAVIGATION -->
 
 		<!-- BREADCRUMB -->
-		<div id="breadcrumb" class="section">
-			<!-- container -->
-			<div class="container">
-				<!-- row -->
-				<div class="row">
-					<div class="col-md-12">
-						<ul class="breadcrumb-tree">
-							<li><a href="#">Home</a></li>
-							<li><a href="store.php">Danh mục</a></li>
-							<li><a href="#">Linh kiện</a></li>							
-							<li class="active">Thông tin chi tiết</li>
-						</ul>
-					</div>
-				</div>
-				<!-- /row -->
-			</div>
-			<!-- /container -->
-		</div>
+		<?php include_once 'subpage/breadcrumb.php'; ?>		
 		<!-- /BREADCRUMB -->
 
 		<!-- SECTION -->
@@ -138,20 +121,20 @@
 								<div class="product-rating">
 									<?php echo $str_rate;?>
 								</div>
-								<a class="review-link" href="#reviews"><span id="count-comment-first"><?php echo isset($count_comment)?$count_comment:0; ?></span> bình luận | Thêm bình luận</a>
+								<a class="review-link" href="#reviews"><span id="count-comment-first"><?php echo isset($count_comment)?$count_comment:0; ?></span> <?php echo getText('cmt'); ?> | <?php echo getText('add_cmt'); ?></a>
 							</div>
 							<div>
 								<h3 class="product-price"><?php echo number_format($product['product_price'],0,'',',').' <sup>đ</sup>'; ?></h3>
-								<span class="product-available">Giá sốc</span>
+								<span class="product-available"><?php echo getText('big_deal'); ?></span>
 							</div>
 							<p><?php echo nl2br($product['product_description']);?></p>
 							
 							<div class="add-to-cart">
 								<div class="row">
-									<div class="col-xs-2">
-										<h4 style='margin-top:8px'>Qty</h4>
-									</div>									
 									<div class="col-xs-3">
+										<h4 style='margin-top:8px'><?php echo getText('qty'); ?> &nbsp;</h4>
+									</div>									
+									<div class="col-xs-2">
 										<div class='form-group'>
 										<input class='form-control' id='quantity' type="number" value='1' min='1' max='99'>
 										</div>
@@ -166,25 +149,25 @@
 										'<?php echo $product['product_img'];?>',
 										'<?php echo $product['cat_name'];?>',
 										1)">
-											<i class='fa fa-shopping-cart'></i> add to cart
+											<i class='fa fa-shopping-cart'></i> <?php echo getText('add_cart'); ?>
 										</button>										
 									</div>
 								</div>																
 							</div>
 
 							<ul class="product-btns">
-								<li><a href="#"><i class="fa fa-heart-o"></i> add to wishlist</a></li>
+								<li><a href="#"><i class="fa fa-heart-o"></i> <?php echo getText('add_wishlist'); ?></a></li>
 						
 							</ul>
 							<ul class="product-links">
 
-								<li>Danh mục:</li>
+								<li><?php echo getText('cat'); ?>:</li>
 								<li><a href="store.php?cat-id=<?php echo $product['cat_id']; ?>&key=&mode=product&ac=search&basic-search=Search"><?php echo $product['cat_name']; ?></a></li>
 								
 							</ul>
 
 							<ul class="product-links">
-								<li>Share:</li>
+								<li><?php echo getText('share'); ?>:</li>
 								<li><a href="#"><i class="fa fa-facebook"></i></a></li>
 								<li><a href="#"><i class="fa fa-twitter"></i></a></li>
 								<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
@@ -200,8 +183,8 @@
 						<div id="product-tab">
 							<!-- product tab nav -->
 							<ul class="tab-nav">
-								<li class="active"><a data-toggle="tab" href="#tab1">Thông tin chi tiết</a></li>	
-								<li><a data-toggle="tab" href="#tab2" >Bình luận (<span id="count-comment-last"><?php echo isset($count_comment)?$count_comment:0; ?></span>)</a></li>
+								<li class="active"><a data-toggle="tab" href="#tab1"><?php echo getText('detail_info'); ?></a></li>	
+								<li><a data-toggle="tab" href="#tab2" ><?php echo getText('cmt'); ?> (<span id="count-comment-last"><?php echo isset($count_comment)?$count_comment:0; ?></span>)</a></li>
 							</ul>
 							<!-- /product tab nav -->
 
@@ -360,7 +343,7 @@
 													for($i=1; $i<=$comments_clt->getPageCount(); $i++)
 													{
 														if($i == $page) echo "<li id='$i' class='active'>$i</li>";
-														else echo "<li id='$i' onClick='SwitchPageComment($i,$masp)'>$i</li>";
+														else echo "<li id='$i' onClick='SwitchPageComment($i,$product_id)'>$i</li>";
 														//echo "<li id='$i' onClick='SwitchPageComment($i)'>$i</li>";
 													}
 												?>
@@ -386,7 +369,7 @@
 														</div>									
 													</div>
 													<?php
-														echo "<button type=\"button\" onClick=\"AddComment($masp)\" class=\"primary-btn\">Bình luận</button>";
+														echo "<button type=\"button\" onClick=\"AddComment($product_id)\" class=\"primary-btn\">Bình luận</button>";
 													?>
 													
 													<div id='result'></div>
@@ -419,7 +402,7 @@
 					<div class="col-md-12">
 						<div class="section-title text-center">
 							<!-- Related Products -->
-							<h3 class="title">Những sản phẩm liên quan</h3>
+							<h3 class="title"><?php echo getText('related_prod'); ?></h3>
 						</div>
 					</div>
 
@@ -468,7 +451,7 @@
 		<!-- /NEWSLETTER -->
 
 		<!-- FOOTER -->
-		<?php include 'subpage/footer.html';?>
+		<?php include 'subpage/footer.php';?>
 		<!-- /FOOTER -->
 
 		<!-- jQuery Plugins -->

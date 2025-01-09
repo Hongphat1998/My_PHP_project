@@ -7,7 +7,7 @@
             <!-- section title -->
             <div class="col-md-12">
                 <div class="section-title">
-                    <h3 class="title">Sản phẩm bán chạy</h3>
+                    <h3 class="title"><?php echo getText('best_sell_prod') ?></h3>
                     <!-- <div class="section-nav">
                         <ul class="section-tab-nav tab-nav">
                             <li class="active"><a data-toggle="tab" href="#tab2">Laptops</a></li>

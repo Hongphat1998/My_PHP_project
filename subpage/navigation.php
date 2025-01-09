@@ -6,13 +6,13 @@
         <div id="responsive-nav">
             <!-- NAV -->
             <ul class="main-nav nav navbar-nav">
-                <li><a href="index.php">Home</a></li>                
-                <li><a href="store.php">Danh mục</a></li>
+                <li><a href="index.php"><?php echo getText('index'); ?></a></li>                
+                <li><a href="store.php"><?php echo getText('cat'); ?></a></li>
                <!--  <li><a href="#">Kiểm tra bảo hành</a></li>
                 <li><a href="#">Thông báo</a></li> -->
-                <li><a href="policy.php">Chính sách</a></li>
-                <li><a href="contact.php">Liên hệ</a></li>              
-                <li><a href="cart.php">Giỏ hàng</a></li>
+                <li><a href="policy.php"><?php echo getText('policy'); ?></a></li>
+                <li><a href="contact.php"><?php echo getText('contact'); ?></a></li>              
+                <li><a href="cart.php"><?php echo getText('shopping_cart'); ?></a></li>
                 <li><a href="https://drive.google.com/drive/u/0/folders/15HfMBPTlNDTE0kBZWpbHaKRD_8ZZDo1q">Source code</a></li>
             </ul>
             <!-- /NAV -->
